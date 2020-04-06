@@ -2,7 +2,6 @@ const mongoose = require("mongoose")
 const Schema   = mongoose.Schema
 
 const boardSchema = Schema({
-//  _id: Schema.Types.ObjectId,
   name: {
     required: true,
     type: String, 
@@ -15,7 +14,6 @@ const boardSchema = Schema({
 
 
 const threadSchema = Schema({
-//  _id: Schema.Types.ObjectId,
   text: {
     required: true,
     type: String, 
@@ -47,7 +45,6 @@ const threadSchema = Schema({
 
 
 const replySchema = Schema({
-//  _id: Schema.Types.ObjectId,
   text: {
     required: true,
     type: String, 
