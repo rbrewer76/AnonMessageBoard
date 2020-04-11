@@ -49,8 +49,8 @@ const replySchema = Schema({
     required: true,
     type: String, 
     trim: true,
-    min: 5,
-    max: 100
+    min: 1,
+    max: 500
   },
   deletepassword_: {
     required: true,

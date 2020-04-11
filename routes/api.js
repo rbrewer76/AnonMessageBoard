@@ -17,6 +17,15 @@ mongoose.connect(process.env.MONGO_URI, { useFindAndModify: false, useNewUrlPars
 
 module.exports = function(app) {
   
+  app.route('/api/boards/')
+    // Return a list of boards
+    .get((req, res) => {
+      Board.find({}).select(["-__v", "-threads"]).then(data => {
+        res.json(data)
+      })
+    })
+  
+  
   app.route('/api/threads/:board')
     .get((req, res) => {
       // Return a list of 10 most recent bumped threads and 3 most recent replies for each
@@ -61,7 +70,9 @@ module.exports = function(app) {
             modifiedResults.map(x => {
               // Sort replies by most recent and limit to 3
               x.replies.sort((a, b) => b.createdon_ - a.createdon_)  
-              x.replies = x.replies.slice(0, 3)              
+              // FreeCodeCamp version is limit 3
+              //  x.replies = x.replies.slice(0, 3)              
+              x.replies = x.replies.slice(0, 10)                            
               return x
             })            
 
